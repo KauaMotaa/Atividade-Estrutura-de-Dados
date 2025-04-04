@@ -1,0 +1,51 @@
+# Sistema de controle de estoque básico usando fila (FIFO)
+class Estoque:
+    def __init__(self):
+        self.produtos = []  
+    
+    def adicionar(self, item):
+        """Adiciona um novo item no final da fila"""
+        self.produtos.append(item)
+        print(f"Adicionado: {item}")
+    
+    def remover(self):
+        """Remove o item mais antigo (primeiro da fila)"""
+        if len(self.produtos) > 0:
+            item = self.produtos.pop(0)
+            print(f"Removido: {item}")
+            return item
+        print("Estoque vazio!")
+        return None
+    
+    def proximo(self):
+        """Mostra qual item será removido porém não remove"""
+        if len(self.produtos) > 0:
+            return self.produtos[0]
+        return None
+    
+    def tamanho(self):
+        """Retorna quantos itens tem no estoque"""
+        return len(self.produtos)
+
+
+# Exemplo do uso 
+if __name__ == "__main__":
+    print("=== CONTROLE DE ESTOQUE SIMPLES ===")
+    meu_estoque = Estoque()
+    
+    # Adicionando produtos
+    meu_estoque.adicionar("Caixa de leite")
+    meu_estoque.adicionar("Pacote de arroz")
+    meu_estoque.adicionar("Lata de óleo")
+    
+    
+    print(f"\nPróximo item a sair: {meu_estoque.proximo()}")
+    print(f"Total de itens: {meu_estoque.tamanho()}")
+    
+    #Removendo Itens
+    print("\nRemovendo itens:")
+    meu_estoque.remover()
+    meu_estoque.remover()
+    
+    print(f"\nAgora o próximo é: {meu_estoque.proximo()}")
+    print(f"Total restante: {meu_estoque.tamanho()}")
